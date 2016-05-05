@@ -19,6 +19,7 @@ Helpful documentation, examples, and sources used in this plugin's development i
  - Tutorial on Adding Admin / Settings Pages found here: https://blog.idrsolutions.com/2014/06/wordpress-plugin-part-1/
  - Handling Plugin Options with Settings API Tutorial found here: http://planetozh.com/blog/2009/05/handling-plugins-options-in-wordpress-28-with-register_setting/
  - Information on How to Get Posts by GUID found here: http://stackoverflow.com/questions/27053807/getting-posts-by-guid
+ - Replacement for simplexmlloadfile() which wasn't working on some web hosts found here: http://stackoverflow.com/questions/6529533/simplexml-load-file-not-working
 
 == Installation ==
 

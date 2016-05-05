@@ -12,6 +12,8 @@ Download this folder and use FTP to place in your plugins directory. ( www -> wp
 
 Or, upload the zip of the folder from the Plugin -> Add New -> Upload Plugin option in the WordPress back end. 
 
+Be sure to rename the download either way back to rss-to-events (remove the -master from the zip / folder name).
+
 Activate, add your feed information, and you should be good to go! 
 
 

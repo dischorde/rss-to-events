@@ -225,6 +225,36 @@
         }
     }
 
+	/**
+     * Function to use curl to get an XML object tree (replacing simplexml load file).
+     * From http://stackoverflow.com/questions/6529533/simplexml-load-file-not-working
+     */
+	function load_xml_file_with_curl($raw_XML) {
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $raw_XML);
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$xml = curl_exec($ch);
+		curl_close($ch);
+	
+		function produce_XML_object_tree($raw_XML) {
+    		libxml_use_internal_errors(true);
+    		try {
+        		$xmlTree = new SimpleXMLElement($raw_XML);
+    		} catch (Exception $e) {
+        		// Something went wrong.
+        		$error_message = 'SimpleXMLElement threw an exception.';
+        		foreach(libxml_get_errors() as $error_line) {
+            		$error_message .= "\t" . $error_line->message;
+        		}
+        		trigger_error($error_message);
+        		return false;
+    		}
+    		return $xmlTree;
+		}
+	
+		return produce_XML_object_tree($xml);
+	}
 
     /**
      * Parses RSS from the URL specified in options and creates an event for each item.
@@ -239,7 +269,7 @@
         if( isset( $feed_info['url'] ) ) {
             
             $num_created = 0;
-            $rss = simplexml_load_file( $feed_info['url'] );
+            $rss = load_xml_file_with_curl( $feed_info['url'] );
             if ( $rss !== false ) {
                 
                 // iterate over items in channel
